@@ -1,0 +1,7 @@
+## Java ##
+target/
+
+## IntelliJ ##
+\.idea/
+api\.idea/
+*.iml
