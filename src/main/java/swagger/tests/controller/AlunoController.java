@@ -53,8 +53,20 @@ public class AlunoController {
             @ApiResponse(code = 201, message = "Aluno cadastrado."),
             @ApiResponse(code = 400, message = "Parametros inválidos.")
     })
-    @PutMapping
+    @PostMapping
     public CadastrarAlunoResponse cadastrar(@RequestBody CadastrarAlunoRequest cadastrarAlunoRequest) {
         return alunoService.cadastrar(cadastrarAlunoRequest);
+    }
+
+    @ApiOperation(
+            value = "Deleta um aluno."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Aluno removido."),
+            @ApiResponse(code = 400, message = "Parametros inválidos.")
+    })
+    @DeleteMapping("/{id}")
+    public void deletar(@ApiParam(value = "ID do aluno", required = true) @PathVariable("id") Integer id) {
+        alunoService.deletar(id);
     }
 }

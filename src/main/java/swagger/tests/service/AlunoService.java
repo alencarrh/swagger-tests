@@ -44,4 +44,8 @@ public class AlunoService {
         List<Aluno> alunos = AlunoTranformation.transformToList(alunoRepository.findAll());
         return alunos;
     }
+
+    public void deletar(Integer id) {
+        alunoRepository.deleteById(id);
+    }
 }
