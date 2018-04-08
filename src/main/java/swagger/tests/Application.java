@@ -7,9 +7,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.Collections;
 
 import static com.google.common.base.Predicates.or;
 import static springfox.documentation.builders.PathSelectors.regex;
@@ -29,7 +33,8 @@ public class Application {
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(paths())
-                .build();
+                .build()
+                .apiInfo(apiInfo());
     }
 
     private Predicate<String> paths() {
@@ -37,5 +42,15 @@ public class Application {
                 regex("/aluno.*"),
                 regex("/livro.*")
                  );
+    }
+
+    private ApiInfo apiInfo() {
+        return new ApiInfo(
+                "Swagger Testes REST API",
+                "Testes para apresentação de Arquitetura de Software",
+                "API 1.0",
+                "Terms of service",
+                new Contact("Alencar e Julia", "www.qualquerURL.com", "some_email_here@mail.com"),
+                "License of API", "API license URL", Collections.emptyList());
     }
 }
